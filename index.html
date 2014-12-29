@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <title>RBS Rental</title>
+    <!--in case browser does not know html5-->
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta charset="utf-8">
+    <meta name="keywords" content="car, rental, hire, trips, cheap, rent">
+    <meta name="description" content="the best rental car company in the world">
+    <meta name="author" content="Refoel Sternbuch">
+
+    <link rel="stylesheet" href="css/css%20for%20all%20pages.css">
+    <link rel="stylesheet" href="css/home%20page.css">
+    <link rel="stylesheet" href="css/cssForPicUpLocationAndDates.css">
+    <link rel="stylesheet" href="css/cssForPricePage.css">
+    <link rel="shortcut icon" href="http://www.rstudio.com/wp-content/uploads/2014/04/favicon.ico">
+
+    <!--
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+-->
+    <script src="http://maps.google.com/maps/api/js?v=3.exp"></script>
+    <script src="js/js%20for%20all%20pages/jquery-2.1.3.min.js"></script>
+
+    <script src="js/main.js"></script>
+    <script src="js/jsForPricePage/calculatePrice.js"></script>
+    <script src="js/jsForPricePage/distanceArea.js"></script>
+    <script src="js/jsForPricePage/continuToRewiewPage.js"></script>
+    <script src="js/jsForBookingPageNotInHomePage/LocalStorageWithBookingProssesNotForHomePage.js"></script>
+    <script src="js/js%20for%20all%20pages/clearLSofBookingProsses.js"></script>
+    <script src="js/js%20for%20all%20pages/arrayWithAllUsers.js"></script>
+    <script src="js/js%20for%20all%20pages/arrayWithCurentUser.js"></script>
+    <script src="js/js%20for%20all%20pages/localStorage.js"></script>
+    <script src="js/js%20for%20all%20pages/todaysYear.js"></script>
+    <script src="js/js%20for%20all%20pages/welcomeClientWithTime.js"></script>
+    <script src="js/js%20for%20all%20pages/logIn.js"></script>
+    <script src="js/js%20for%20all%20pages/logOut.js"></script>
+    <script src="js/js%20for%20home%20page/clearWelcome.js"></script>
+</head>
+
+<body>
+    <div class="loadingPopUp" id="loadingPopUp">
+        <img class="gifImg" src="img/giphy.gif" alt="">
+
+        <div class="oneMoment">Loading...</div>
+
+    </div>
+    <div class="theWholePage makeItBigger">
+        <header class="topHeader">
+            <a href="index.html" class="childrenOfHeader logo">
+                <span class="weight900">R</span>
+                <span class="weight500">B</span>
+                <span class="weight900">S</span>
+                <span class="webDescription">Car Rental</span>
+            </a>
+            <div class="childrenOfHeader">
+                <div class="slideToWelcomeClient" id="slideToWelcomeClient"></div>
+            </div>
+            <div class="childrenOfHeader logInOrOut">
+                <div class="welcomeTheClient" id="welcomeTheClient"></div>
+                <div class="hideLogIn" id="logIn">Sign in</div>
+                <div class="hideLogOut" id="logOut">Sign out</div>
+            </div>
+        </header>
+
+        <img class="mainImage makeImgBigger" src="img/wallpaper.jpg" alt="main background image">
+        <nav class="MainNav">
+            <div class="flex2"></div>
+            <a class="flex1 hoverGray navLinkCss pageYouAreNotOn" href="index.html">
+                <div>Book a Car</div>
+            </a>
+
+            <a id="seeCarsPage" class="flex1 hoverGray navLinkCss noBorder  pageYouOn" href="all%20the%20cars.html">
+                <div>See Our Cars</div>
+            </a>
+            <a id="showOnlyWhenLogedIn" class="flex1 hoverGray navLinkCss pageYouAreNotOn hideThisWhileClientNotLogedIn" href="My%20Account.html">
+                <div>My Account</div>
+            </a>
+            <a id="dontShowWhenLogedaiN" class="flex1 hoverGray navLinkCss pageYouAreNotOn" href="sign%20in%20page.html">
+                <div>Sign up / Sign in</div>
+            </a>
+        </nav>
+        <div class="status" id="status">
+            <div class="singlStatusStage stepPageDone">1. Car Class</div>
+            <div class="stepsConector "></div>
+            <div class="singlStatusStage stepPageDone">2. Car Mondel</div>
+            <div class="stepsConector"></div>
+            <div class="singlStatusStage stepPageDone">3. Location and Dates</div>
+            <div class="stepsConector"></div>
+            <div class="singlStatusStage stepPageThatYouAreOn">4. Price</div>
+            <div class="stepsConector"></div>
+            <div class="singlStatusStage">5. Review and Book</div>
+        </div>
+        <div class="statusIfClientCameFromHomePage" id="statusIfClientCameFromHomePage">
+            <div class="singlStatusStage stepPageDone">1. Location and Dates</div>
+            <div class="stepsConector"></div>
+            <div class="singlStatusStage stepPageDone">2. Car Class</div>
+            <div class="stepsConector"></div>
+            <div class="singlStatusStage stepPageDone">3. Car Model</div>
+            <div class="stepsConector"></div>
+            <div class="singlStatusStage stepPageThatYouAreOn">4. Price</div>
+            <div class="stepsConector"></div>
+            <div class="singlStatusStage">5. Review and Book</div>
+        </div>
+        <section class="priceArea" id="priceArea">
+            <div class="insidePriceArea">
+                <div class="priceForRental">The Total for your Rental is $<span id="calculatetPrice"></span> *
+                </div>
+                <div class="calculateDetails"><span>(</span><span id="rentelDaysAmount"></span><span> days, $</span><span id="rentalPricePerDay"></span><span> per day)</span><span class="calculateDetailsForKm"><span> (+ </span><span id="kmAmount"></span><span> KM)</span></span>
+                </div>
+                <br>
+                <hr>
+                <br>
+                <div class="milesMessege">*this price includes <span id="amountOfKmIncluded">200</span> KM.</div>
+                <div class="putItInTheMiddle">
+                    <br>extra KM is $0.50 for the first 90 KM, $0.30 for the rest.
+                    <br>Manual cars get 10% discount on the KM
+                    <br>
+                    <br><span id="addKmText">To add KM press Add KM, to continue booking press Continue</span>
+                </div>
+
+
+                <div class="addMilesOrContinue">
+                    <div class="flex3"></div>
+                    <div class="flex1 addMilesDiv">
+                        <input class="addMilesInput" id="addMilesInput" type="button" value="Add KM">
+                    </div>
+                    <div class="flex1 continueDiv">
+                        <input class="continueInput" id="continueInput" type="button" value="Continue">
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </section>
+        <section class="distensArea" id="distensArea">
+            <div class="chiceHowToAddKm">
+                <div class="flex1 selectAmountOfKm">
+                    <select name="" id="selectAmountOfKm">
+                        <option value="50">50 KM</option>
+                        <option value="100">100 KM</option>
+                        <option value="200">200 KM</option>
+                        <option value="300">300 KM</option>
+                        <option value="400">400 KM</option>
+                        <option value="500">500 KM</option>
+                        <option value="600">600 KM</option>
+                        <option value="700">700 KM</option>
+                    </select>
+                    <input type="button" id="addKmToRental" value="add to rental">
+                </div>
+                <div class="flex2"><span>or you can use our map tools below to see how many KM you need</span>
+                </div>
+            </div>
+            <hr>
+            <div class="startingDestination">
+                <div class="flex3 startingPoint"><span>1. Starting point:</span>
+                    <input id="startingPoint" type="text" placeholder="city, state/country">
+                    <br>
+                    <input class="currentLocationInput" id="currentLocation" type="checkbox">
+                    <label class="currentLocation" for="currentLocation">get your current location</label>
+                </div>
+                <div class="flex3 destinationPoint"><span>2. Destination:</span>
+                    <input id="destinationPoint" type="text" placeholder="city, state/country">
+                </div>
+                <div class="flex1 lineHeight">
+                    <input type="button" id="calculateKmOfTrip" value="get the distantet">
+                </div>
+            </div>
+            <div>
+            </div>
+            <div class="cityName" id="cityName">Please enter valid City Name</div>
+            <div class="totalAmountOfKm" id="totalAmountOfKmSummery">the total amount of km for the whole trip (2 ways) is: <span id="totalAmountOfKm"></span> KM
+                <input type="button" id="addKmToRentalFromMap" value="add to rental">
+            </div>
+            <div id="mapUsaCanvas" class="mapUsaCanvas"></div>
+
+        </section>
+
+    </div>
+    <footer class="copyRitht">
+        <p>&copy; RBS Rental - All Rights Reserved (<span id="todaysYear"></span>).</p>
+    </footer>
+    <audio class="musicPlayer" src="VIDEO_TS_02_Title_1.mp4" id="myMusic" controls></audio>
+</body>
+
+</html>
