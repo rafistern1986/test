@@ -1,6 +1,6 @@
 
 
-function checkDistens(totelRoute) {
+function checkDistens(route) {
     /*var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
     var map;
@@ -26,7 +26,7 @@ function checkDistens(totelRoute) {
     directionsService.route(request, function (response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
             var totelRoute = response.routes[0].legs[0].distance.value * 2;*/
-            
+            var totelRoute = route *2;
             var str = totelRoute.toString();
             str = str.substring(0, str.length - 3)
             postMessage(str);
