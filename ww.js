@@ -1,6 +1,6 @@
 
 
-function checkDistens() {
+function checkDistens(totelRoute) {
     /*var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
     var map;
