@@ -31,6 +31,6 @@ function checkDistens() {
             /* $("#totalAmountOfKm").text(str);
         }
     })*/
-}
+} 
 
 setTimeout(checkDistens, 6000)
