@@ -1,4 +1,4 @@
-var totelRoute = this.postMessage(event.data);
+
 
 function checkDistens() {
     /*var directionsDisplay;
@@ -35,5 +35,8 @@ function checkDistens() {
         }
     })*/
 } 
-
-setTimeout(checkDistens, 6000)
+this.onmessage=function(event){
+    
+    postMessage(checkDistens(event.data));
+};
+/*setTimeout(checkDistens, 6000)*/
