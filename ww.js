@@ -1,7 +1,7 @@
 function checkDistens() {
-    var directionsDisplay;
+    /*var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
-    /*var map;
+    var map;
     directionsDisplay = new google.maps.DirectionsRenderer();
     var usa = new google.maps.LatLng(37.09024, -95.712891);
     var mapOptions = {
@@ -12,7 +12,7 @@ function checkDistens() {
     map = new google.maps.Map(document.getElementById('mapUsaCanvas'), mapOptions);
     $("#loadingPopUp").hide();
     $("#myMusic").trigger("pause").prop("currentTime", 5);
-    $("#distensArea").addClass("height562px")*/
+    $("#distensArea").addClass("height562px")
 
     var start = $("#startingPoint").val();
     var end = $("#destinationPoint").val();
@@ -23,7 +23,7 @@ function checkDistens() {
     };
     directionsService.route(request, function (response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-            var totelRoute = response.routes[0].legs[0].distance.value * 2;
+            var totelRoute = response.routes[0].legs[0].distance.value * 2;*/
             var str = totelRoute.toString();
             str = str.substring(0, str.length - 3)
             postMessage(str);
