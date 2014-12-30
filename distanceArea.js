@@ -39,12 +39,12 @@ $(document).ready(function () {
                 directionsService.route(request, function (response, status) {
                     if (status == google.maps.DirectionsStatus.OK) {
                         directionsDisplay.setDirections(response);
-                         var totelRoute = response.routes[0].legs[0].distance.value * 2;
+                         var route = response.routes[0].legs[0].distance.value;
                           /*web worker to get the km of drive*/
             if (typeof (webWorker) == "undefined") {
                 webWorker = new Worker("ww.js");
             }
-             webWorker.postMessage(totelRoute)
+             webWorker.postMessage(route)
             webWorker.onmessage = function (event) {
                 $("#totalAmountOfKm").text(event.data);
             };
