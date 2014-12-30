@@ -44,7 +44,7 @@ $(document).ready(function () {
             if (typeof (webWorker) == "undefined") {
                 webWorker = new Worker("ww.js");
             }
-            
+             webWorker.postMessage(totelRoute)
             webWorker.onmessage = function (event) {
                 $("#totalAmountOfKm").text(event.data);
             };
