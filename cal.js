@@ -1,8 +1,8 @@
 $(document).ready(function () {
 
     var pricePerDay = 11;
-    var pickUpDate = "april";
-    var returnDate = "may";
+    var pickUpDate = "2014-12-16";
+    var returnDate = "2014-12-22";
     var oneDay = 24 * 60 * 60 * 1000;
     var firstDate = new Date(pickUpDate);
     var secondDate = new Date(returnDate);
