@@ -24,6 +24,7 @@ function checkDistens() {
     directionsService.route(request, function (response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
             var totelRoute = response.routes[0].legs[0].distance.value * 2;*/
+            var totelRoute = this.postMessage(event.data)
             var str = totelRoute.toString();
             str = str.substring(0, str.length - 3)
             postMessage(str);
