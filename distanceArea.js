@@ -22,14 +22,7 @@ $(document).ready(function () {
         });
         $("#calculateKmOfTrip").on("click", function () {
 
-            /*web worker to get the km of drive*/
-            if (typeof (webWorker) == "undefined") {
-                webWorker = new Worker("ww.js");
-            }
-            
-            webWorker.onmessage = function (event) {
-                $("#totalAmountOfKm").text(event.data);
-            };
+           
 
             function showRouteOnMap() {
                 $("#loadingPopUp").hide();
@@ -46,7 +39,17 @@ $(document).ready(function () {
                 directionsService.route(request, function (response, status) {
                     if (status == google.maps.DirectionsStatus.OK) {
                         directionsDisplay.setDirections(response);
-                        /* var totelRoute = response.routes[0].legs[0].distance.value * 2;
+                         var totelRoute = response.routes[0].legs[0].distance.value * 2;
+                          /*web worker to get the km of drive*/
+            if (typeof (webWorker) == "undefined") {
+                webWorker = new Worker("ww.js");
+            }
+            
+            webWorker.onmessage = function (event) {
+                $("#totalAmountOfKm").text(event.data);
+            };
+                         
+                         /*
  var str = totelRoute.toString();
  str = str.substring(0, str.length - 3)
  $("#totalAmountOfKm").text(str);*/
