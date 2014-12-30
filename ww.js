@@ -28,9 +28,9 @@ function checkDistens() {
             str = str.substring(0, str.length - 3)
             postMessage(str);
 
-            /* $("#totalAmountOfKm").text(str);*/
+            /* $("#totalAmountOfKm").text(str);
         }
-    })
+    })*/
 }
 
 setTimeout(checkDistens, 6000)
