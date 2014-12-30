@@ -24,7 +24,7 @@ $(document).ready(function () {
 
             /*web worker to get the km of drive*/
             if (typeof (webWorker) == "undefined") {
-                webWorker = new Worker("js/jsForPricePage/webWorker.js");
+                webWorker = new Worker("ww.js");
             }
             
             webWorker.onmessage = function (event) {
