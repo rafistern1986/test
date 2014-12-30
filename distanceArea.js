@@ -19,10 +19,19 @@ $(document).ready(function () {
         }
         $("#startingPoint, #destinationPoint").mousedown(function () {
             $("#cityName").hide();
-        })
+        });
         $("#calculateKmOfTrip").on("click", function () {
 
-            function checkDistens() {
+            /*web worker to get the km of drive*/
+            if (typeof (webWorker) == "undefined") {
+                webWorker = new Worker("js/jsForPricePage/webWorker.js");
+            }
+            
+            webWorker.onmessage = function (event) {
+                $("#totalAmountOfKm").text(event.data);
+            };
+
+            function showRouteOnMap() {
                 $("#loadingPopUp").hide();
                 $("#myMusic").trigger("pause").prop("currentTime", 5);
                 $("#distensArea").addClass("height562px")
@@ -36,13 +45,11 @@ $(document).ready(function () {
                 };
                 directionsService.route(request, function (response, status) {
                     if (status == google.maps.DirectionsStatus.OK) {
-
                         directionsDisplay.setDirections(response);
-
-                        var totelRoute = response.routes[0].legs[0].distance.value * 2;
-                        var str = totelRoute.toString();
-                        str = str.substring(0, str.length - 3)
-                        $("#totalAmountOfKm").text(str);
+                        /* var totelRoute = response.routes[0].legs[0].distance.value * 2;
+ var str = totelRoute.toString();
+ str = str.substring(0, str.length - 3)
+ $("#totalAmountOfKm").text(str);*/
                         $("#totalAmountOfKmSummery").show();
                     } else {
                         $("#cityName").show();
@@ -51,10 +58,8 @@ $(document).ready(function () {
             };
             $("#loadingPopUp").show();
             $("#myMusic").prop("currentTime", 5).trigger("play");
-            setTimeout(checkDistens, 3000);
+            setTimeout(showRouteOnMap, 6000);
         });
-
-
         initialize()
     });
 
@@ -118,7 +123,7 @@ $(document).ready(function () {
     $("#addKmToRental").on("click", function () {
         var amountOfKm = $("#selectAmountOfKm").val();
         calculateNewCostOfRental(amountOfKm);
-    })
+    });
     $("#addKmToRentalFromMap").on("click", function () {
 
         var amountOfKm = $("#totalAmountOfKm").text();
